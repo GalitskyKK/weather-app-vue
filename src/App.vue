@@ -20,12 +20,14 @@
 
     <div class="search-history" v-if="searchHistory.length">
       <h3 @click="toggleHistory">{{ showHistory ? 'Hide history ↑' : 'Show history ↓' }}</h3>
+      <div class="history-container">
       <ul v-show="showHistory">
         <li v-for="city in searchHistory" :key="city">
           <button @click="searchFromHistory(city)">{{ city }}</button>
         </li>
+        <button @click="clearSearchHistory" class="clear-history-button">Clear history</button>        
       </ul>
-      <button @click="clearSearchHistory" class="clear-history-button">Clear History</button>
+      </div>
     </div>
 
     <div class="weather-bg" :class="weatherClass">
@@ -114,7 +116,7 @@ export default defineComponent({
     }
   },
   mounted() {
-    this.loadSearchHistory(); // Загрузка истории поиска при инициализации компонента
+    this.loadSearchHistory();
   }
 });
 </script>
@@ -123,15 +125,25 @@ export default defineComponent({
 .search-history {
   display: flex;
   flex-direction: column;
-  background-color: #ffffff75;
-  border-radius: 10px;
-  padding: 20px 30px;
-  box-shadow: 1px 1px 20px #00000015;
+
+  h3 {
+    cursor: pointer;
+    padding: 5px;
+
+    &:hover {
+      color: #313130;
+      border-radius: 10px;
+    }
+  }
 }
 
-.search-history ul {
+.history-container ul {
   list-style-type: none;
   padding: 0;
+  background-color: #ffffff75;
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: 1px 1px 20px #00000015;
 }
 
 .search-history li {
@@ -151,12 +163,12 @@ export default defineComponent({
 }
 
 .clear-history-button {
-  margin-top: 10px;
+  margin-top: 15px;
   color: red;
   background: none;
   border: none;
   font-size: 14px;
   cursor: pointer;
-  text-decoration: underline;
+  text-decoration: none!important;
 }
 </style>
