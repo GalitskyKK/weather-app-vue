@@ -17,7 +17,7 @@
         :descriptionIcon="descriptionIcon"
         :error="error" />
     </div>
-
+    
     <div class="search-history" v-if="searchHistory.length">
       <h3 @click="toggleHistory">{{ showHistory ? 'Hide history ↑' : 'Show history ↓' }}</h3>
       <div class="history-container">
@@ -65,7 +65,7 @@ export default defineComponent({
   },
   methods: {
     weatherSearch() {
-      if (this.searchQuery.trim() === '') return; // Проверка на пустую строку
+      if (this.searchQuery.trim() === '') return;
 
       this.loading = true;
       this.error = false;
@@ -122,6 +122,34 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
+
+.weather {
+  width: 100%;
+  height: 100%;
+  min-height: 100vh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+}
+
+.container {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 15px;
+  display: grid;
+  grid-template-columns: 1fr 100px 200px;
+  gap: 20px;
+}
+
+.weather-load {
+  display: flex;
+  text-align: center;
+}
+
 .search-history {
   display: flex;
   flex-direction: column;
@@ -163,6 +191,7 @@ export default defineComponent({
 }
 
 .clear-history-button {
+  text-transform: none!important;
   margin-top: 15px;
   color: red;
   background: none;
