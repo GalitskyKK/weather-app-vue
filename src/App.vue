@@ -65,7 +65,7 @@ export default defineComponent({
   },
   methods: {
     weatherSearch() {
-      if (this.searchQuery.trim() === '') return; // Проверка на пустую строку
+      if (this.searchQuery.trim() === '') return;
 
       this.loading = true;
       this.error = false;
@@ -163,6 +163,7 @@ export default defineComponent({
 }
 
 .clear-history-button {
+  text-transform: none!important;
   margin-top: 15px;
   color: red;
   background: none;
